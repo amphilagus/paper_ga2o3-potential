@@ -65,7 +65,8 @@ Blue and red dots represent NEP and tabGAP results, respectively.
 Panels (a), (c), and (e) show the predicted energies, forces,
 and virials of the entire GAP-dataset configurations.
 Panels (b), (d), and (f) present the corresponding results
-for a much narrower energy window from $-5.9$ to $-5.8$~eV/atom.}
+for a much narrower energy window from $-5.9$ to $-5.8$~eV/atom.
+\textit{Alt text:} Six scatter plots compare DFT reference values with model-predicted values for energy, force, and virial over the full GAP dataset and over a very narrow low-energy window. The full-dataset panels show much broader scatter, while the narrow-window panels show tightly grouped points near the diagonal. Across these comparisons, NEP generally remains closer to the diagonal than tabGAP, indicating better overall accuracy.}
 \label{fig:S1}
 \end{figure}
 
@@ -75,7 +76,8 @@ for a much narrower energy window from $-5.9$ to $-5.8$~eV/atom.}
 \caption{Energy-volume curves for the $\alpha$, $\beta$ and $\gamma$ phases 
 predicted by zero-shot NEP (solid circles), NEP with augmented training set (solid triangles), 
 and tabGAP (solid squares), compared with DFT reference 
-data (open circles). Different phases are color-coded as indicated.}
+data (open circles). Different phases are color-coded as indicated.
+\textit{Alt text:} A multi-curve plot shows energy per atom versus volume per atom for the alpha, beta, and gamma phases. For each phase, DFT reference data are compared with zero-shot NEP, augmented-data NEP, and tabGAP predictions. The augmented NEP curves lie closest to DFT, especially for the gamma phase, while zero-shot NEP and tabGAP deviate more strongly. The figure emphasizes that adding targeted training data improves the description of the gamma-phase equation of state.}
 \label{fig:S2}
 \end{figure}
 
@@ -84,7 +86,8 @@ data (open circles). Different phases are color-coded as indicated.}
 \includegraphics[width=0.8\linewidth]{ltc_direction_comparison.png}
 \caption{Comparison of lattice thermal conductivity (LTC) predicted by the NEP and tabGAP models against experimental data.
 The tabGAP predictions are obtained using the equilibrium molecular dynamics (EMD) method\cite{kuboStatisticalmechanicalTheoryIrreversible1957},
-while the NEP predictions employ the more computationally efficient homogeneous nonequilibrium molecular dynamics (HNEMD) method\cite{fanHomogeneousNonequilibriumMolecular2019}.}
+while the NEP predictions employ the more computationally efficient homogeneous nonequilibrium molecular dynamics (HNEMD) method\cite{fanHomogeneousNonequilibriumMolecular2019}.
+\textit{Alt text:} A grouped bar chart compares lattice thermal conductivity along the [100], [010], and [001] crystallographic directions for tabGAP, NEP trained on the GAP dataset, NEP trained on the augmented dataset, and experiment. In all series, the [010] direction has the highest conductivity. The augmented NEP model reproduces this anisotropy more closely than the other simulations, although all calculated values remain lower than experiment.}
 \label{fig:S3}
 \end{figure}
 
@@ -94,7 +97,8 @@ while the NEP predictions employ the more computationally efficient homogeneous 
 \caption{(a) Longitudinal cross-sectional view of the SHI-irradiated $\beta$-Ga$_2$O$_3$ 
 atomic structure with $S_e = 19.18$~keV/nm, the vertical direction is along [201] direction. 
 (b) Simulated diffraction pattern for the pristine $\beta$ phase.
-(c) Simulated diffraction pattern for the $\gamma$ phase.}
+(c) Simulated diffraction pattern for the $\gamma$ phase.
+\textit{Alt text:} Panel (a) shows a longitudinal atomic cross section of an irradiated beta-Ga$_2$O$_3$ track at an electronic energy loss of 19.18~keV/nm, with dashed boxes marking representative regions. Panels (b) and (c) show simulated diffraction patterns from selected areas. The pristine beta phase produces sharp, well-defined diffraction spots, whereas the gamma-phase region shows new characteristic diffraction spots associated with the gamma-phase structure. The figure demonstrates how irradiation-induced phase transformation from beta to gamma manifests in the diffraction pattern.}
 \label{fig:S4}
 \end{figure}
 
@@ -102,32 +106,36 @@ atomic structure with $S_e = 19.18$~keV/nm, the vertical direction is along [201
 \centering
 \includegraphics[width=\linewidth]{rdf_comparison.png}
 \caption{Radial distribution functions (RDFs) of the ion track 
-at $S_e = 22.16$~keV/nm before and after the annealing simulation at 800~K for 2~ns.}
+at $S_e = 22.16$~keV/nm before and after the annealing simulation at 800~K for 2~ns (Multimedia available online).
+\textit{Alt text:} Three RDF plots compare Ga--Ga, Ga--O, and O--O pair correlations for pristine material, core and shell of the irradiated track, and the annealed core. Irradiation broadens and weakens peaks, showing increased disorder. After annealing at 800~K for 2~ns, several peaks within the core region become sharper and move closer to the shell (gamma) curves, indicating partial structural recovery and reorganization from the amorphous state to the gamma phase.}
 \label{fig:S5}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.75\linewidth]{figureS3_transverse_part1.png}
+\includegraphics[width=0.6\linewidth]{figureS3_transverse_part1.png}
 \caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
 for electronic energy losses ranging from $S_e = 11.29$~keV/nm to 
-$S_e = 26.05$~keV/nm. The measured track diameters are indicated for each case.}
+$S_e = 26.05$~keV/nm. The measured track diameters are indicated for each case.
+\textit{Alt text:} A matrix of transverse atomic cross sections shows three repeated simulations for each of five electronic energy losses between 11.29 and 26.05~keV/nm. At 11.29~keV/nm no visible track forms, and at 15.68~keV/nm only a faint damaged region appears. At 19.18, 22.16, and 26.05~keV/nm, clear tracks are present and their labeled diameters increase from about 2 to about 6~nm, although some run-to-run variation is visible.}
 \label{fig:S6}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.75\linewidth]{figureS3_transverse_part2.png}
+\includegraphics[width=0.6\linewidth]{figureS3_transverse_part2.png}
 \caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
 for electronic energy losses ranging from $S_e = 30.08$~keV/nm to 
-$S_e = 42.92$~keV/nm. The measured track diameters are indicated for each case.}
+$S_e = 42.92$~keV/nm. The measured track diameters are indicated for each case.
+\textit{Alt text:} A matrix of transverse atomic cross sections shows three repeated simulations for each of four higher electronic energy losses between 30.08 and 42.92~keV/nm. All cases display large, well-developed tracks with labeled diameters of roughly 7 to 8.3~nm. Differences among repeats are modest, and the track size appears to approach saturation at the highest energy losses.}
 \label{fig:S7}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{trekis_radial_energy.png}
-\caption{Radial energy deposition profiles calculated by TREKIS for ions of different species and energies.}
+\caption{Radial energy deposition profiles calculated by TREKIS for ions of different species and energies.
+\textit{Alt text:} A line chart plots radial energy density versus radial distance for several ions and incident energies. All curves decrease with increasing distance from the track center, showing that deposited energy is most concentrated near the center. Higher-energy-loss cases lie higher overall and extend to larger radii, while some high-energy Ta and Au cases are close to each other near the center, indicating similar central energy densities despite different stopping powers.}
 \label{fig:S8}
 \end{figure}
 

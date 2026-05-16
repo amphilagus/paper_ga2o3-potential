@@ -428,10 +428,10 @@ are in meV/\AA, and virial values are in meV/atom.
  \cline{2-3} \cline{4-5} \cline{6-7}
 Model & MAE & RMSE & MAE & RMSE & MAE & RMSE \\
 \hline
-tabGAP (Broader) & 48.3 & 130.2 & 392.7 & 1023.0 & 172.3 & 621.6 \\
-NEP (Broader) & 16.4 & 37.2 & 303.8 & 845.2 & 69.3 & 191.5 \\
-tabGAP (Narrower) & 11.8 & 22.7 & 392.5 & 1029.1 & 168.9 & 654.7 \\
-NEP (Narrower) & 6.4 & 10.4 & 302.5 & 842.5 & 69.4 & 197.5 \\
+tabGAP (Broader) & 48.3 & 130.2 & 339.2 & 791.6 & 136.8 & 387.8 \\
+NEP (Broader) & 16.4 & 37.2 & 237.3 & 552.8 & 57.1 & 128.2 \\
+tabGAP (Narrower) & 11.8 & 22.7 & 146.5 & 286.6 & 42.2 & 200.0 \\
+NEP (Narrower) & 6.4 & 10.4 & 105.5 & 221.4 & 18.8 & 30.3 \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -725,8 +725,10 @@ demonstrating the practical predictive capability of NEP by elucidating the expe
 \centering
 \includegraphics[width=\textwidth]{tracks.png}
 \caption{\label{fig_tracks}
-Transverse and longitudinal cross-sectional views of the SHI-irradiated $\beta$-\ga\ atomic structure 
-with various electronic energy losses.
+Transverse and longitudinal cross-sectional views of SHI-irradiated $\beta$-\ga\ 
+at selected electronic energy losses:
+(a--b) $15.68$~keV/nm, (c--d) $19.18$~keV/nm, 
+(e--f) $22.16$~keV/nm, (g--h) $26.05$~keV/nm, and (i--j) $36.24$~keV/nm.
 }
 \end{figure*}
 
@@ -856,11 +858,11 @@ These observations suggest that this highly disordered core should be interprete
 as a precursor state of the $\gamma$ phase, which may transform into a standard 
 $\gamma$ structure under mild post-irradiation conditions, such as
 long-term defect relaxation at ambient conditions or TEM-induced structural recovery.
-To illustrate this point, we performed a annealing simulation to accelerate the post-irradiation evolution 
+To illustrate this point, we performed an annealing simulation to accelerate the post-irradiation evolution 
 of the track structure at $S_e = 22.16$~keV/nm, maintaining a temperature of 800~K for 2~ns. 
 Radial distribution functions (RDFs) provide clear evidence for the transition of the core from an amorphous 
 to a $\gamma$-phase state (Fig.~S5), and a movie of this process, produced by OVITO\cite{stukowskiVisualizationAnalysisAtomistic2010}, 
-is available in the Supplemental Material.
+is available online (Multimedia available online).
 
 When $S_e$ further increases to 26.05~keV/nm, the track size increases rapidly to 
 approximately 6~nm in diameter.
@@ -924,6 +926,16 @@ simulations approaching the device scale for \ga\ systems.\cite{xu_device-scale_
 This capability opens a new avenue for device-scale design and optimization of
 \ga-based devices from an atomistic simulation perspective.
 
+
+\section*{SUPPLEMENTARY MATERIAL}
+The supplementary material includes eight figures (Figs.~S1--S8) providing additional 
+details on the NEP training accuracy, energy-volume curves, lattice thermal conductivity, 
+ion track structure and diffraction, radial distribution functions, 
+transverse cross-sectional views of ion tracks, and radial energy deposition profiles.
+Also included are the Ga$_2$O$_3$ complex dielectric function file (\texttt{Ga2O3.txt}) and 
+input parameters file (\texttt{INPUT\_PARAMETERS.txt}) used for TREKIS calculations. 
+A movie showing the amorphous-to-$\gamma$ transition of the track core during 
+post-irradiation annealing at 800~K for 2~ns is also provided.
 
 % If you have acknowledgments, this puts in the proper section head.
 \begin{acknowledgments}
