@@ -1,0 +1,36 @@
+# 论文 PDF、投稿文件、图件和审稿回复可独立取回。
+
+[pack manuscript-pdfs]
+*.pdf
+
+[pack submission-documents]
+*.docx
+*.xls
+*.xlsx
+
+[pack historical-archives]
+*.zip
+
+[each]
+figures/
+figures_raw/
+第一轮意见回复/
+第二轮意见回复/
+!**/.DS_Store
+!**/._*
+!**/__pycache__/
+!**/*.py[cod]
+!**/.venv/
+!**/.*.cloudpack-*/
+!**/*.aux
+!**/*.bbl
+!**/*.blg
+!**/*.fdb_latexmk
+!**/*.fls
+!**/*.log
+!**/*.out
+!**/*.synctex
+!**/*.synctex.gz
+!**/*.toc
+!**/*.xdv
+!**/*Notes.bib
