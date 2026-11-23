@@ -8,7 +8,10 @@
 \renewcommand{\thetable}{S\arabic{table}}
 
 \usepackage{graphicx}
-\graphicspath{{figures/}}
+\graphicspath{{第二轮意见回复/for publications/}}
+\makeatletter
+\DeclareGraphicsRule{.tiff}{pdf}{.pdf}{\noexpand\Gin@base.pdf}
+\makeatother
 \usepackage{amsmath,amssymb}
 
 \begin{document}
@@ -59,7 +62,7 @@ Accurate and Efficient Modeling of Polymorphism and Swift Heavy-Ion Irradiation'
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{comparison_dual_2x3_t100_t01.png}
+\includegraphics[width=0.8\linewidth]{Figure_S1.tiff}
 \caption{Detailed comparison of the prediction accuracy of the NEP and tabGAP models.
 Blue and red dots represent NEP and tabGAP results, respectively.
 Panels (a), (c), and (e) show the predicted energies, forces,
@@ -72,71 +75,157 @@ for a much narrower energy window from $-5.9$ to $-5.8$~eV/atom.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{S1.png}
-\caption{Energy-volume curves for the $\alpha$, $\beta$ and $\gamma$ phases 
-predicted by zero-shot NEP (solid circles), NEP with augmented training set (solid triangles), 
-and tabGAP (solid squares), compared with DFT reference 
-data (open circles). Different phases are color-coded as indicated.
-\textit{Alt text:} A multi-curve plot shows energy per atom versus volume per atom for the alpha, beta, and gamma phases. For each phase, DFT reference data are compared with zero-shot NEP, augmented-data NEP, and tabGAP predictions. The augmented NEP curves lie closest to DFT, especially for the gamma phase, while zero-shot NEP and tabGAP deviate more strongly. The figure emphasizes that adding targeted training data improves the description of the gamma-phase equation of state.}
+\includegraphics[width=\linewidth]{Figure_S2.tiff}
+\caption{Pair-energy curves for Ga--Ga, Ga--O, and O--O dimers from 1 to 6~\AA\ on a linear energy scale.
+NEP, tabGAP, and DFT results are shown in blue, orange, and green, respectively.
+The curves provide a direct comparison of isolated dimer interactions from the chemically relevant distance range to the far-field region.
+\textit{Alt text:} Three line plots show relative dimer energy as a function of distance from 1 to 6~\AA\ for Ga--Ga, Ga--O, and O--O pairs. Overall, NEP and tabGAP give broadly comparable pair-energy behavior on this linear scale, with similar energy magnitudes and long-range convergence toward zero, although their agreement with DFT varies by pair type. For Ga--Ga, NEP, tabGAP, and DFT nearly overlap, with a steep repulsive wall near 1~\AA\ that rapidly decays to almost zero beyond about 2~\AA. For Ga--O, all three methods show short-range repulsion followed by an attractive well, but NEP gives a shallower minimum than tabGAP and DFT before all curves approach zero at large distance. For O--O, the disagreement is much larger: DFT has the deepest attractive well, tabGAP is somewhat shallower, and NEP shows a shallower minimum followed by a positive hump at intermediate distances before converging toward zero.}
 \label{fig:S2}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{ltc_direction_comparison.png}
-\caption{Comparison of lattice thermal conductivity (LTC) predicted by the NEP and tabGAP models against experimental data.
-The tabGAP predictions are obtained using the equilibrium molecular dynamics (EMD) method\cite{kuboStatisticalmechanicalTheoryIrreversible1957},
-while the NEP predictions employ the more computationally efficient homogeneous nonequilibrium molecular dynamics (HNEMD) method\cite{fanHomogeneousNonequilibriumMolecular2019}.
-\textit{Alt text:} A grouped bar chart compares lattice thermal conductivity along the [100], [010], and [001] crystallographic directions for tabGAP, NEP trained on the GAP dataset, NEP trained on the augmented dataset, and experiment. In all series, the [010] direction has the highest conductivity. The augmented NEP model reproduces this anisotropy more closely than the other simulations, although all calculated values remain lower than experiment.}
+\includegraphics[width=\linewidth]{Figure_S3.tiff}
+\caption{Short-range pair-energy curves for Ga--Ga, Ga--O, and O--O dimers in the highly repulsive regime.
+The energies are plotted on a logarithmic scale to compare NEP, tabGAP, and DFT from sub-angstrom separations up to 1~\AA.
+This test shows that NEP and tabGAP exhibit consistent ultra-short-range repulsive behavior, while both differ from DFT for Ga-containing dimers at the shortest separations.
+\textit{Alt text:} Three logarithmic line plots compare short-distance dimer energies for Ga--Ga, Ga--O, and O--O pairs from sub-angstrom separations to 1~\AA. For all pairs, the repulsive energy increases rapidly as the atoms approach each other. In the O--O panel, NEP, tabGAP, and DFT agree very well across almost the entire distance range. For the Ga-containing Ga--Ga and Ga--O pairs, NEP and tabGAP remain close to each other in the ultra-short-range repulsive region, whereas both lie above the DFT curve at the shortest separations.}
 \label{fig:S3}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{S2.png}
-\caption{(a) Longitudinal cross-sectional view of the SHI-irradiated $\beta$-Ga$_2$O$_3$ 
-atomic structure with $S_e = 19.18$~keV/nm, the vertical direction is along [201] direction. 
-(b) Simulated diffraction pattern for the pristine $\beta$ phase.
-(c) Simulated diffraction pattern for the $\gamma$ phase.
-\textit{Alt text:} Panel (a) shows a longitudinal atomic cross section of an irradiated beta-Ga$_2$O$_3$ track at an electronic energy loss of 19.18~keV/nm, with dashed boxes marking representative regions. Panels (b) and (c) show simulated diffraction patterns from selected areas. The pristine beta phase produces sharp, well-defined diffraction spots, whereas the gamma-phase region shows new characteristic diffraction spots associated with the gamma-phase structure. The figure demonstrates how irradiation-induced phase transformation from beta to gamma manifests in the diffraction pattern.}
+\includegraphics[width=0.8\linewidth]{Figure_S4.tiff}
+\caption{Energy-volume curves for the $\alpha$, $\beta$ and $\gamma$ phases 
+predicted by zero-shot NEP (solid circles), NEP with augmented training set (solid triangles), 
+and tabGAP (solid squares), compared with DFT reference 
+data (open circles). Different phases are color-coded as indicated.
+\textit{Alt text:} A multi-curve plot shows energy per atom versus volume per atom for the alpha, beta, and gamma phases. For each phase, DFT reference data are compared with zero-shot NEP, augmented-data NEP, and tabGAP predictions. The augmented NEP curves lie closest to DFT, especially for the gamma phase, while zero-shot NEP and tabGAP deviate more strongly. The figure emphasizes that adding targeted training data improves the description of the gamma-phase equation of state.}
 \label{fig:S4}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{rdf_comparison.png}
-\caption{Radial distribution functions (RDFs) of the ion track 
-at $S_e = 22.16$~keV/nm before and after the annealing simulation at 800~K for 2~ns (Multimedia available online).
-\textit{Alt text:} Three RDF plots compare Ga--Ga, Ga--O, and O--O pair correlations for pristine material, core and shell of the irradiated track, and the annealed core. Irradiation broadens and weakens peaks, showing increased disorder. After annealing at 800~K for 2~ns, several peaks within the core region become sharper and move closer to the shell (gamma) curves, indicating partial structural recovery and reorganization from the amorphous state to the gamma phase.}
+\includegraphics[width=0.8\linewidth]{Figure_S5.tiff}
+\caption{Energy-volume curves for geometry-optimized $\alpha$, $\beta$, $\delta$, $\gamma$, and $\kappa$ phase Ga$_2$O$_3$ configurations.
+The structures used in the corresponding energy-volume comparison were optimized with VASP, followed by single-point energy calculations and predictions using tabGAP and NEP.
+Open circles denote DFT reference energies, filled circles denote tabGAP predictions, and filled squares denote NEP predictions.
+\textit{Alt text:} A multi-curve energy-volume plot compares optimized alpha, beta, delta, gamma, and kappa phase Ga$_2$O$_3$ structures. Each phase is shown with DFT open circles, tabGAP filled circles, and NEP filled squares. The tabGAP and NEP curves generally follow the DFT energy-volume trends after geometry optimization, with visible method-dependent deviations for some phases.}
 \label{fig:S5}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.6\linewidth]{figureS3_transverse_part1.png}
-\caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
-for electronic energy losses ranging from $S_e = 11.29$~keV/nm to 
-$S_e = 26.05$~keV/nm. The measured track diameters are indicated for each case.
-\textit{Alt text:} A matrix of transverse atomic cross sections shows three repeated simulations for each of five electronic energy losses between 11.29 and 26.05~keV/nm. At 11.29~keV/nm no visible track forms, and at 15.68~keV/nm only a faint damaged region appears. At 19.18, 22.16, and 26.05~keV/nm, clear tracks are present and their labeled diameters increase from about 2 to about 6~nm, although some run-to-run variation is visible.}
+\includegraphics[width=0.8\linewidth]{Figure_S6.tiff}
+\caption{Energy-volume curves for four $\gamma$-Ga$_2$O$_3$ configurations with different atomistic realizations of the defective-spinel occupancy.
+Configuration 1 was derived from the $\gamma$ entry selected from the original GAP dataset and included in the augmented NEP training set after compression and expansion.
+Configurations 2--4 were generated by random occupation according to experimentally refined site occupancies from total neutron diffraction\cite{playford_structures_2013} and were not used for training.
+The cation-site pattern of Configuration 1 is not fully identical to the Playford-refined model used for Configurations 2--4, and the randomly generated configurations generally have higher DFT energies than Configuration 1 because they were not selected as locally lower-energy realizations.
+Open circles denote DFT, filled circles denote NEP, and filled squares denote tabGAP.
+Although the relative NEP/tabGAP deviations depend on the $\gamma$-phase configuration, NEP remains overall closer to DFT than tabGAP.
+\textit{Alt text:} Four colored energy-volume curves compare DFT, NEP, and tabGAP for gamma-phase Ga$_2$O$_3$ configurations. Configuration 1 lies lowest in energy; Configurations 2--4 are higher-energy random-occupancy realizations. NEP generally follows DFT more closely than tabGAP, with configuration-dependent deviations.}
 \label{fig:S6}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.6\linewidth]{figureS3_transverse_part2.png}
-\caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
-for electronic energy losses ranging from $S_e = 30.08$~keV/nm to 
-$S_e = 42.92$~keV/nm. The measured track diameters are indicated for each case.
-\textit{Alt text:} A matrix of transverse atomic cross sections shows three repeated simulations for each of four higher electronic energy losses between 30.08 and 42.92~keV/nm. All cases display large, well-developed tracks with labeled diameters of roughly 7 to 8.3~nm. Differences among repeats are modest, and the track size appears to approach saturation at the highest energy losses.}
+\includegraphics[width=0.8\linewidth]{Figure_S7.tiff}
+\caption{Comparison of lattice thermal conductivity (LTC) predicted by the NEP and tabGAP models against experimental data.
+The tabGAP predictions are obtained using the equilibrium molecular dynamics (EMD) method\cite{kuboStatisticalmechanicalTheoryIrreversible1957},
+while the NEP predictions employ the more computationally efficient homogeneous nonequilibrium molecular dynamics (HNEMD) method\cite{fanHomogeneousNonequilibriumMolecular2019}.
+\textit{Alt text:} A grouped bar chart compares lattice thermal conductivity along the [100], [010], and [001] crystallographic directions for tabGAP, NEP trained on the GAP dataset, NEP trained on the augmented dataset, and experiment. In all series, the [010] direction has the highest conductivity. The augmented NEP model reproduces this anisotropy more closely than the other simulations, although all calculated values remain lower than experiment.}
 \label{fig:S7}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{trekis_radial_energy.png}
+\includegraphics[width=0.8\linewidth]{Figure_S8.tiff}
+\caption{Energy-volume comparison for noncrystalline Ga$_2$O$_3$ configurations.
+Curves labeled \texttt{npj2023\_min} and \texttt{npj2023\_max} correspond to structures from the training dataset of Zhao \textit{et al.}\cite{zhaoComplexGa2O3Polymorphs2023}.
+Curves labeled \texttt{melting\_no-opt} and \texttt{melting\_opt} correspond to additional molten-state configurations prepared in this work by stretching or compressing molten structures without and with subsequent geometry optimization, respectively.
+Open circles denote DFT reference energies, filled circles denote NEP predictions, and filled squares denote tabGAP predictions.
+\textit{Alt text:} A multi-curve plot compares energy per atom versus volume per atom for noncrystalline Ga$_2$O$_3$ configurations. The \texttt{melting\_no-opt} and \texttt{melting\_opt} curves are based on 2200~K molten structures generated in this work, and their energies lie much closer to the $\beta$-phase reference energy of about $-5.9$~eV/atom than the \texttt{npj2023\_min} and \texttt{npj2023\_max} curves from the Zhao et al. dataset, especially after geometry optimization for the orange \texttt{melting\_opt} curve. The comparison shows that NEP follows the DFT reference data more closely for configurations nearer to the ground-state energy, suggesting better performance for molten-state structures closer to the melting regime.}
+\label{fig:S8}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.55\linewidth]{Figure_S9.tiff}
+\caption{Radial distribution functions (RDFs) of noncrystalline Ga$_2$O$_3$ at 2200~K and a density of $4.84~\mathrm{g}\cdot\mathrm{cm}^{-3}$.
+Panels (a), (b), and (c) show the O--O, O--Ga, and Ga--Ga correlations, respectively.
+NEP and tabGAP predictions are compared with VASP-PBE reference data.
+The RDFs show that NEP follows the VASP-PBE reference more closely than tabGAP, particularly for the first-neighbor peak positions and local structural features.
+\textit{Alt text:} Three vertically stacked RDF plots compare O--O, O--Ga, and Ga--Ga pair correlations at 2200 K. Blue NEP, orange tabGAP, and green VASP-PBE curves are shown in each panel. The NEP curves closely track the VASP-PBE peak positions and peak shapes, while tabGAP shows somewhat larger deviations in several first-neighbor features.}
+\label{fig:S9}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.65\linewidth]{Figure_S10.tiff}
+\caption{Bond-angle distributions of noncrystalline Ga$_2$O$_3$ at 2200~K and a density of $4.84~\mathrm{g}\cdot\mathrm{cm}^{-3}$.
+Panels (a) and (b) show the O--Ga--O and Ga--O--Ga angle distributions, respectively, using Ga--O pairs with $r_{\mathrm{Ga-O}} \leq 3.3$~\AA.
+NEP and tabGAP both reproduce the VASP-PBE reference distributions reasonably well.
+\textit{Alt text:} Two probability-density plots compare O--Ga--O and Ga--O--Ga angle distributions. The NEP, tabGAP, and VASP-PBE curves nearly overlap over most of the angular range, with broad maxima around intermediate angles and smooth decay toward 180 degrees.}
+\label{fig:S10}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.75\linewidth]{Figure_S11.tiff}
+\caption{Ga--O ring-size distributions of noncrystalline Ga$_2$O$_3$ at 2200~K and a density of $4.84~\mathrm{g}\cdot\mathrm{cm}^{-3}$.
+Ring statistics are evaluated using Ga--O pairs with $r_{\mathrm{Ga-O}} \leq 2.35$~\AA.
+The NEP and tabGAP distributions are broadly comparable, while VASP-PBE shows a stronger contribution from 10-membered rings under the same analysis criterion.
+The error bars for the VASP-PBE data mainly reflect the statistical uncertainty associated with AIMD sampling in a relatively small simulation cell; the differences between VASP-PBE and the MLIP results may also be partly affected by this limited AIMD cell size.
+\textit{Alt text:} A grouped bar chart compares Ga--O ring-size frequencies for NEP, tabGAP, and VASP-PBE. Most rings have sizes from 6 to 12, with all methods showing a dominant contribution around 8- and 10-membered rings. VASP-PBE has the largest 10-membered-ring frequency and includes visible error bars, which arise mainly from AIMD sampling in a relatively small simulation cell. NEP and tabGAP spread the distribution more evenly across neighboring ring sizes, and part of their difference from the VASP-PBE result may be related to the limited AIMD cell size rather than only to the model itself.}
+\label{fig:S11}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{Figure_S12.tiff}
+\caption{(a) Longitudinal cross-sectional view of the SHI-irradiated $\beta$-Ga$_2$O$_3$ 
+atomic structure with $S_e = 19.18$~keV/nm, the vertical direction is along [201] direction. 
+(b) Simulated diffraction pattern for the pristine $\beta$ phase.
+(c) Simulated diffraction pattern for the $\gamma$ phase.
+\textit{Alt text:} Panel (a) shows a longitudinal atomic cross section of an irradiated beta-Ga$_2$O$_3$ track at an electronic energy loss of 19.18~keV/nm, with dashed boxes marking representative regions. Panels (b) and (c) show simulated diffraction patterns from selected areas. The pristine beta phase produces sharp, well-defined diffraction spots, whereas the gamma-phase region shows new characteristic diffraction spots associated with the gamma-phase structure. The figure demonstrates how irradiation-induced phase transformation from beta to gamma manifests in the diffraction pattern.}
+\label{fig:S12}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{Figure_S13.tiff}
+\caption{Radial distribution functions (RDFs) of the ion track 
+at $S_e = 22.16$~keV/nm before and after the annealing simulation at 800~K for 2~ns.
+\textit{Alt text:} Three RDF plots compare Ga--Ga, Ga--O, and O--O pair correlations for pristine material, core and shell of the irradiated track, and the annealed core. Irradiation broadens and weakens peaks, showing increased disorder. After annealing at 800~K for 2~ns, several peaks within the core region become sharper and move closer to the shell (gamma) curves, indicating partial structural recovery and reorganization from the amorphous state to the gamma phase.}
+\label{fig:S13}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\linewidth]{Figure_S14.tiff}
+\caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
+for electronic energy losses ranging from $S_e = 11.29$~keV/nm to 
+$S_e = 26.05$~keV/nm. The measured track diameters are indicated for each case.
+\textit{Alt text:} A matrix of transverse atomic cross sections shows three repeated simulations for each of five electronic energy losses between 11.29 and 26.05~keV/nm. At 11.29~keV/nm no visible track forms, and at 15.68~keV/nm only a faint damaged region appears. At 19.18, 22.16, and 26.05~keV/nm, clear tracks are present and their labeled diameters increase from about 2 to about 6~nm, although some run-to-run variation is visible.}
+\label{fig:S14}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\linewidth]{Figure_S15.tiff}
+\caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
+for electronic energy losses ranging from $S_e = 30.08$~keV/nm to 
+$S_e = 42.92$~keV/nm. The measured track diameters are indicated for each case.
+\textit{Alt text:} A matrix of transverse atomic cross sections shows three repeated simulations for each of four higher electronic energy losses between 30.08 and 42.92~keV/nm. All cases display large, well-developed tracks with labeled diameters of roughly 7 to 8.3~nm. Differences among repeats are modest, and the track size appears to approach saturation at the highest energy losses.}
+\label{fig:S15}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{Figure_S16.tiff}
 \caption{Radial energy deposition profiles calculated by TREKIS for ions of different species and energies.
 \textit{Alt text:} A line chart plots radial energy density versus radial distance for several ions and incident energies. All curves decrease with increasing distance from the track center, showing that deposited energy is most concentrated near the center. Higher-energy-loss cases lie higher overall and extend to larger radii, while some high-energy Ta and Au cases are close to each other near the center, indicating similar central energy densities despite different stopping powers.}
-\label{fig:S8}
+\label{fig:S16}
 \end{figure}
 
 \clearpage

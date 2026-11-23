@@ -15,7 +15,10 @@
 
 % Self definition
 \usepackage{graphicx}% Include figure files
-\graphicspath{{figures/}}
+\graphicspath{{第二轮意见回复/for publications/}}
+\makeatletter
+\DeclareGraphicsRule{.tiff}{pdf}{.pdf}{\noexpand\Gin@base.pdf}
+\makeatother
 \usepackage{bm}% bold math
 \usepackage[english]{babel}
 \makeatletter
@@ -98,8 +101,8 @@ studies, particularly in understanding phase-transformation behaviors under none
 Here, we develop a robust, accurate, and computationally efficient machine-learning 
 interatomic potential (MLIP) for \ga\ based on the neuroevolution potential (NEP) 
 framework combined with an energy-dependent weighting strategy. 
-The resulting NEP potential demonstrates clear advantages over the 
-state-of-the-art tabGAP potential with respect to both accuracy and computational efficiency. 
+The resulting NEP potential demonstrates clear accuracy advantages over the 
+state-of-the-art tabGAP potential and delivers high single-GPU computational throughput. 
 Furthermore, we introduce a physically process-oriented sampling strategy to 
 systematically augment the training dataset, thereby enhancing the MLIP performance 
 for targeted physical phenomena. 
@@ -168,11 +171,13 @@ phase transformations\cite{azarov_self-assembling_2025}
 and crystallization dynamics,\cite{zhang_orientation-dependent_2023,li_edge-dependent_2025} 
 and has played a pivotal role in recent studies of irradiation effects in 
 \ga.\cite{azarov_universal_2023,zhao_crystallization_2025,han_electronic_2025,abdullaev_ions_2025} 
-However, despite its considerable success, tabGAP still exhibits notable limitations compared 
-to other state-of-the-art MLIPs, including relatively lower accuracy and computational 
-speed, as will be demonstrated in the following sections. 
+However, despite its considerable success, tabGAP still exhibits notable limitations for the 
+present large-scale irradiation workflow, including lower prediction accuracy and a larger 
+coupled CPU--GPU hardware footprint for reaching throughput comparable to the single-GPU 
+NEP implementation, as will be demonstrated in the following sections. 
 These limitations motivate us to rigorously benchmark the overall 
-performance of tabGAP and develop a new, more accurate and efficient MLIP for \ga.
+performance of tabGAP and develop a new MLIP with improved accuracy and practical 
+resource efficiency for \ga.
 
 In this work, we adopt the neuroevolution potential (NEP) framework, which is well known
 for its high computational efficiency,\cite{xu_gpumd_2025} to construct MLIPs for \ga.
@@ -204,7 +209,8 @@ Its explicit atomic-environment featurization is carefully designed to strike an
 balance between prediction accuracy and computational efficiency. 
 Moreover, NEP is natively implemented in the Graphics Processing Units Molecular Dynamics 
 (GPUMD) package, enabling an impressive computational throughput of up to $1\times10^{7}$ 
-atom-steps per second on a single GPU.\cite{xu_gpumd_2025} 
+atom-steps per second on a single GPU without requiring additional CPU-side force-evaluation
+resources.\cite{xu_gpumd_2025} 
 Considering its overall performance, NEP stands out as one of the most promising 
 MLIPs for large-scale simulations of \ga\ under a wide range of physical conditions.
 
@@ -355,7 +361,7 @@ hardware-related biases.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\columnwidth]{comparison_dual_2x3.png}
+\includegraphics[width=0.7\columnwidth]{Figure_1.tiff}
 \caption{\label{fig_comparison_dual_2x3}
 Detailed comparison of the prediction accuracy of the NEP and tabGAP models.
 Blue and red dots represent NEP and tabGAP results, respectively.
@@ -414,6 +420,9 @@ and virial predictions.
 Additional prediction accuracy comparisons over the entire GAP dataset and 
 25.6\% of the GAP dataset (up to 0.1~eV/atom above the $\beta$ phase) are provided in Fig.~S1, 
 confirming that the superiority of NEP in prediction accuracy is maintained consistently.
+We also compare isolated Ga--Ga, Ga--O, and O--O dimer energy curves on both linear and logarithmic
+energy scales, showing that NEP and tabGAP exhibit broadly comparable behavior in the pair-interaction
+and highly repulsive short-range regimes (Figs.~S2 and S3).
 
 \begin{table}[htbp]
 \caption{\label{tab_accuracy_comparison}
@@ -438,22 +447,23 @@ NEP (Narrower) & 6.4 & 10.4 & 105.5 & 221.4 & 18.8 & 30.3 \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\columnwidth]{throughput_comparison.png}
+\includegraphics[width=0.7\columnwidth]{Figure_2.tiff}
 \caption{\label{fig_throughput_comparison}
 Computational throughput benchmark for NEP and tabGAP across different system sizes.
-NEP is tested on a single NVIDIA H100 GPU and a single NVIDIA GeForce RTX~4090 GPU,
-while tabGAP is tested on eight CPU nodes, each equipped with two 24-core Intel Xeon
-Gold 6240R processors.
+NEP is tested in GPUMD on a single NVIDIA H100 GPU and a single NVIDIA GeForce RTX~4090 GPU.
+The original tabGAP potential is tested in LAMMPS using a CPU-only configuration with 
+16 Intel Xeon Gold 6240R processors, and GPU-accelerated LAMMPS/KOKKOS configurations with
+one H100 GPU plus one Intel Xeon Gold 6240R processor and with two H100 GPUs plus two 
+Intel Xeon Gold 6240R processors.
 }
 \end{figure}
 
 Beyond its prediction accuracy, NEP also exhibits remarkably high computational throughput.
-To characterize its performance, we benchmarked the throughput of NEP on two representative
-GPU platforms---a single NVIDIA H100 (a current-generation data-center GPU) and a single
-NVIDIA GeForce RTX~4090 (a high-end consumer-grade GPU)---alongside tabGAP running in LAMMPS
-on a cluster of eight CPU nodes, each equipped with two 24-core Intel Xeon Gold 6240R
-processors (released in 2020), for systems containing between $10^4$ and $10^7$ atoms
-[Fig.~\ref{fig_throughput_comparison}].
+To characterize the practical performance of the actual MD workflows used here, we benchmarked
+NEP in GPUMD on two representative GPU platforms---a single NVIDIA H100 (a current-generation
+data-center GPU) and a single NVIDIA GeForce RTX~4090 (a high-end consumer-grade GPU)---and
+the original tabGAP potential in LAMMPS using both CPU-only and GPU-accelerated configurations
+for systems containing between $10^4$ and $10^7$ atoms [Fig.~\ref{fig_throughput_comparison}].
 On the H100, NEP reaches approximately $5.0\times10^6$ atom-steps per second at $10^4$ atoms
 and approaches a stable throughput of around $1.25\times10^7$ atom-steps per second for
 systems larger than $10^5$ atoms.
@@ -462,17 +472,27 @@ $1.04\times10^7$ atom-steps per second at $10^5$ atoms and $1.25\times10^7$ at $
 although its 24~GB memory becomes a limiting factor for systems on the order of $10^7$ atoms.
 In comparison, the tabGAP throughput on the eight-node CPU cluster plateaus at approximately
 $2\times10^6$ atom-steps per second for large systems.
-We acknowledge that newer-generation CPUs would yield higher throughput, and that LAMMPS
-offers a degree of GPU acceleration for certain potential styles.
-Nonetheless, the fact that even a single consumer-grade GPU can sustain a throughput
-exceeding $10^7$ atom-steps per second highlights the substantial cost-effectiveness of
-NEP natively deployed within GPUMD---a molecular dynamics package written entirely in CUDA
-and designed for GPU execution from the ground up.
+With GPU acceleration enabled for tabGAP in LAMMPS/KOKKOS, the throughput increases
+substantially: the configuration using one H100 GPU plus one CPU reaches about
+$7.1$--$7.6\times10^6$ atom-steps per second for large systems, whereas the
+configuration using two H100 GPUs plus two CPUs reaches about $1.37$--$1.39\times10^7$
+atom-steps per second.
+It should be noted that the NEP benchmarks use a single-GPU GPUMD production workflow, in
+which the CPU serves only for host-side job control and I/O rather than force evaluation.
+By contrast, the GPU-accelerated tabGAP workflow in LAMMPS/KOKKOS relies on coupled GPU
+and CPU resources.
+Thus, NEP on one H100 outperforms tabGAP using one H100 plus one CPU while requiring a
+smaller CPU-side hardware footprint, and tabGAP using two H100 GPUs plus two CPUs reaches
+comparable or slightly higher throughput only with a larger accelerator and CPU allocation.
+These results support a hardware-specific conclusion: NEP natively deployed within GPUMD
+provides excellent single-GPU throughput and resource efficiency for large-scale \ga\ MD
+simulations, rather than implying a universal speed advantage over all possible tabGAP
+implementations.
 
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=\textwidth]{mae_by_config_type_comparison.png}
+\includegraphics[width=\textwidth]{Figure_3.tiff}
 \caption{\label{fig_mae_by_config_type_comparison}
 Comparison of the MAE of (a) energy, (b) force, and (c) virial 
 predictions by NEP and tabGAP for different config types in the GAP dataset.
@@ -481,7 +501,7 @@ predictions by NEP and tabGAP for different config types in the GAP dataset.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\columnwidth]{energy_mae_comparison.png}
+\includegraphics[width=0.7\columnwidth]{Figure_4.tiff}
 \caption{\label{fig_energy_mae_comparison}
 (a) Illustration of the energy-dependent weighting strategy, where the black curve
 represents the rescaling factor as a function of the average potential energy.
@@ -551,7 +571,7 @@ thermodynamically rare high-energy configurations.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\columnwidth]{energy_volume_comparison.png}
+\includegraphics[width=0.7\columnwidth]{Figure_5.tiff}
 \caption{\label{fig_energy_volume_comparison}
 Energy-volume curves for the $\alpha$, $\beta$, $\delta$, $\gamma$, and $\kappa$ phases 
 predicted by NEP (solid circles) and tabGAP (solid squares), compared with DFT reference 
@@ -561,7 +581,7 @@ data (open circles). Different phases are color-coded as indicated.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\columnwidth]{melting_pca.png}
+\includegraphics[width=0.7\columnwidth]{Figure_6.tiff}
 \caption{\label{fig_melting_pca}
 Energy predictions for configurations sampled from heating--cooling processes 
 of the $\beta$ phase under various pressure and volume conditions, as predicted by (a) 
@@ -591,7 +611,7 @@ The first notable observation is that tabGAP systematically overpredicts the ene
 the $\gamma$ phase by nearly 20~meV/atom relative to the DFT results, indicating limited
 extrapolation capability for zero-shot configurations that deviate from its training set.
 NEP shows improved zero-shot performance for $\gamma$-phase configurations
-[Fig.~S2], although it still overestimates their energies.
+[Fig.~S4], although it still overestimates their energies.
 The NEP model trained with the augmented dataset performs best, achieving an energy MAE
 about 3~meV/atom for the $\gamma$ phase.
 In addition, both NEP and tabGAP accurately reproduce the energy--volume curves of the
@@ -604,6 +624,32 @@ whereas tabGAP exhibits a noticeable overestimation of the corresponding energie
 Given that the $\beta \to \kappa$ transition has also been reported in irradiation
 experiments on \ga,\cite{han_electronic_2025} the improved description of the $\kappa$
 phase constitutes another advantage of NEP over tabGAP.
+It should be noted that the polymorph configurations used for the original GAP-dataset
+energy--volume curves were not fully geometry-optimized.
+To exclude possible effects associated with the lack of structural relaxation, we further optimized
+these configurations using VASP and repeated the single-point DFT calculations and MLIP predictions.
+The optimized-structure results lead to the same conclusions, confirming that the above comparison
+is not affected by the initial lack of geometry optimization (Fig.~S5).
+
+Moreover, the defective-spinel $\gamma$ phase contains partially occupied cation sites, so its
+atomistic realization is intrinsically non-unique.
+The $\gamma$-phase curve used for training-set augmentation was generated by isotropically
+compressing and expanding the $\gamma$ entry selected from the original GAP dataset.
+To examine whether the comparison is robust against configurational variability, we further
+constructed three additional $\gamma$-Ga$_2$O$_3$ configurations by randomly assigning the
+partially occupied cation sites according to the experimentally refined occupancies from
+total neutron diffraction\cite{playford_structures_2013};
+these additional configurations were not included in the training set.
+Our analysis indicates that the cation-site occupancy pattern in the original GAP-dataset
+$\gamma$ configuration is not fully identical to this experimentally refined occupancy model.
+Because the newly generated configurations follow a random-occupancy construction rather than
+being selected as locally lower-energy structural realizations, their DFT energies are generally
+higher than that of the training-derived configuration.
+Using the same energy--volume workflow, we find that the relative NEP/tabGAP accuracy varies
+with the specific $\gamma$-phase configuration, while NEP remains overall closer to DFT than
+tabGAP across these tests (Fig.~S6).
+This additional validation confirms that the improved description of the $\gamma$-phase
+energy--volume relation is not limited to a single selected configuration.
 
 Although NEP performs better for most polymorphs, tabGAP shows a clear advantage in
 describing the $\delta$ phase.
@@ -673,7 +719,7 @@ by the energy-dependent weighting strategy, as the primary objective of our NEP 
 to accurately describe stable and metastable states under ambient conditions.
 Moreover, this dataset augmentation yields an unexpected benefit: 
 an improved description of the anisotropic lattice thermal conductivity (LTC) of \ga. 
-As shown in Fig.~S3, the LTC predicted by the augmented NEP potential correctly reproduces the 
+As shown in Fig.~S7, the LTC predicted by the augmented NEP potential correctly reproduces the 
 pronounced preference for the [010] direction over the other two crystallographic directions, 
 although the absolute LTC values remain systematically lower than experimental measurements, 
 as the NEP was not specifically trained to target LTC.
@@ -682,10 +728,21 @@ from the heating--cooling processes together with related configurations of the 
 dataset.
 The newly added samples effectively fill the gaps in descriptor space between the original
 $\beta$-phase, molten, and amorphous configurations, thereby validating our sampling strategy.
+In addition to the improved energy prediction shown in Fig.~\ref{fig_melting_pca}(c), we further
+benchmark the NEP model trained on the augmented dataset using independent molten-state tests.
+The noncrystalline energy--volume comparison includes both structures from the Zhao \textit{et al.}
+training dataset and additional stretched or compressed molten-state configurations generated from
+2200~K structures in this work.
+The latter configurations, especially after geometry optimization, lie much closer to the
+$\beta$-phase ground-state energy, where NEP follows the DFT reference data more closely than
+tabGAP (Fig.~S8).
+Structural benchmarks for 2200~K noncrystalline Ga$_2$O$_3$, including RDFs, bond-angle
+distributions, and Ga--O ring-size statistics, further show that the augmented NEP model performs
+comparably to or better than tabGAP across multiple molten-state descriptors (Figs.~S9--S11).
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=\textwidth]{ion_track.png}
+\includegraphics[width=\textwidth]{Figure_7.tiff}
 \caption{\label{fig_ion_track}
 Analysis of a representative ion track in $\beta$-\ga\ generated by the energy deposition from a 70~MeV 
 \textsuperscript{181}Ta ion. 
@@ -723,7 +780,7 @@ demonstrating the practical predictive capability of NEP by elucidating the expe
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=\textwidth]{tracks.png}
+\includegraphics[width=\textwidth]{Figure_8.tiff}
 \caption{\label{fig_tracks}
 Transverse and longitudinal cross-sectional views of SHI-irradiated $\beta$-\ga\ 
 at selected electronic energy losses:
@@ -800,7 +857,7 @@ be reported elsewhere.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\columnwidth]{track_diameter_comparison.png}
+\includegraphics[width=0.7\columnwidth]{Figure_9.tiff}
 \caption{\label{fig_track_diameter_comparison}
 Comparison of the track diameters predicted in this work and the TEM 
 results reported by Xu \textit{et al.}~\cite{xu_thermal_2025} 
@@ -838,7 +895,7 @@ formation.
 When $S_e$ increases to 19.18~keV/nm, slightly above the experimental threshold, 
 continuous $\gamma$-phase regions are observed in the both transverse and longitudinal cross-sectional views, 
 with limited number of oxygen defects emerging.
-The simulated diffraction patterns for this case [Fig.~S4] reproduce the key features 
+The simulated diffraction patterns for this case [Fig.~S12] reproduce the key features 
 observed experimentally,\cite{abdullaev_ions_2025} confirming the formation of $\gamma$-phase 
 ion tracks at $S_e$ slightly above the threshold. 
 
@@ -861,8 +918,8 @@ long-term defect relaxation at ambient conditions or TEM-induced structural reco
 To illustrate this point, we performed an annealing simulation to accelerate the post-irradiation evolution 
 of the track structure at $S_e = 22.16$~keV/nm, maintaining a temperature of 800~K for 2~ns. 
 Radial distribution functions (RDFs) provide clear evidence for the transition of the core from an amorphous 
-to a $\gamma$-phase state (Fig.~S5), and a movie of this process, produced by OVITO\cite{stukowskiVisualizationAnalysisAtomistic2010}, 
-is available online (Multimedia available online).
+to a $\gamma$-phase state (Fig.~S13), and a movie of this process, produced by OVITO\cite{stukowskiVisualizationAnalysisAtomistic2010}, 
+is available online.
 
 When $S_e$ further increases to 26.05~keV/nm, the track size increases rapidly to 
 approximately 6~nm in diameter.
@@ -882,13 +939,13 @@ as shown in Fig.~\ref{fig_track_diameter_comparison}.
 The figure includes simulation results for nine different values of $S_e$, with each
 case repeated three times to reduce statistical fluctuations in the MD simulations. 
 All simulated transverse cross-sectional views, along with the corresponding measured 
-track diameters, are presented in Fig.~S6 and Fig.~S7. 
+track diameters, are presented in Fig.~S14 and Fig.~S15. 
 The simulated track diameter increases rapidly once $S_e$ exceeds a threshold of 
 approximately 17~keV/nm, whereas the growth rate decreases markedly when $S_e$ exceeds 30~keV/nm.
 At even higher $S_e$, the monotonic dependence of the simulated track size on 
 $S_e$ becomes less evident, which we attribute to the velocity effect on the radial 
 energy deposition profile.
-As shown in Fig.~S8, although the $S_e$ of 1000~MeV Ta ions (39.26~keV/nm) is slightly 
+As shown in Fig.~S16, although the $S_e$ of 1000~MeV Ta ions (39.26~keV/nm) is slightly 
 higher than that of 200~MeV Ta ions (36.24~keV/nm), the higher velocity of the 
 1000~MeV ions leads to a broader spatial distribution of the deposited energy, resulting 
 in a lower energy density near the track center and consequently a comparable track size.
@@ -905,6 +962,9 @@ Based on our benchmarks, a four-GPU RTX~4090 workstation running four independen
 simulations concurrently can deliver an aggregate throughput of roughly $4\times10^7$ 
 atom-steps per second, enabling this entire workload to be completed in approximately 
 3.5~days on a consumer-grade platform.
+Because these NEP simulations are independent single-GPU GPUMD jobs and do not require
+additional CPU-side force-evaluation resources, this workload can be mapped efficiently
+onto an accessible multi-GPU workstation.
 This demonstrates that, with NEP natively deployed within GPUMD, large-scale and 
 high-throughput MD studies become readily feasible even without dedicated 
 high-performance computing resources.
@@ -913,8 +973,8 @@ high-performance computing resources.
 
 In conclusion, by combining the NEP architecture with an energy-dependent weighting
 strategy, we develop a robust, accurate, and computationally efficient MLIP for \ga,
-which demonstrates clear and comprehensive advantages over the state-of-the-art tabGAP
-potential.
+which demonstrates higher prediction accuracy than the state-of-the-art tabGAP potential
+and excellent single-GPU resource efficiency in large-scale MD simulations.
 Furthermore, by adopting a physically process-oriented sampling strategy, the NEP model
 trained on the augmented dataset is successfully applied to SHI irradiation simulations
 of $\beta$-\ga.
@@ -928,9 +988,11 @@ This capability opens a new avenue for device-scale design and optimization of
 
 
 \section*{SUPPLEMENTARY MATERIAL}
-The supplementary material includes eight figures (Figs.~S1--S8) providing additional 
-details on the NEP training accuracy, energy-volume curves, lattice thermal conductivity, 
-ion track structure and diffraction, radial distribution functions, 
+The supplementary material includes sixteen figures (Figs.~S1--S16) providing additional 
+details on the NEP training accuracy, dimer interaction tests, energy-volume curves,
+geometry-optimization tests and configuration sensitivity for polymorph energy-volume curves,
+lattice thermal conductivity,
+molten-state benchmarks, ion track structure and diffraction, radial distribution functions,
 transverse cross-sectional views of ion tracks, and radial energy deposition profiles.
 Also included are the Ga$_2$O$_3$ complex dielectric function file (\texttt{Ga2O3.txt}) and 
 input parameters file (\texttt{INPUT\_PARAMETERS.txt}) used for TREKIS calculations. 

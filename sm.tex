@@ -1,0 +1,95 @@
+\documentclass[aps,prb,onecolumn,superscriptaddress,floatfix]{revtex4-2}
+
+% 如果补充材料需要图表编号与主稿分开
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{amsmath,amssymb}
+
+\begin{document}
+
+\title{Supplemental Material for \\ ``A Neuroevolution Potential for Gallium Oxide: \\
+Accurate and Efficient Modeling of Polymorphism and Swift Heavy-Ion Irradiation''}
+
+\author{Yaohui Gu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Binbo Li}
+\thanks{Y.G. and B.L. contributed equally to this work.}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Linyang Jiang}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Yuhui Hu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\affiliation{School of Materials $\&$ Energy, Lanzhou University, Lanzhou, 730000, China}
+\author{Wenqiang Liu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Lijun Xu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Pengfei Zhai}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Jie Liu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Jinglai Duan}
+\thanks{Corresponding author. Email: j.duan@impcas.ac.cn}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\affiliation{Advanced Energy Science and Technology Guangdong Laboratory, Huizhou 516000, China}
+
+\date{\today}
+
+\maketitle
+
+\section{Extra Figures}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{S1.png}
+\caption{Energy-volume curves for the $\alpha$, $\beta$ and $\gamma$ phases 
+predicted by zero-shot NEP (solid circles), NEP with augmented training set (solid triangles), 
+and tabGAP (solid squares), compared with DFT reference 
+data (open circles). Different phases are color-coded as indicated.}
+\label{fig:S1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\linewidth]{S2.png}
+\caption{\textbf{(a)} Longitudinal cross-sectional view of the SHI-irradiated $\beta$-Ga$_2$O$_3$ 
+atomic structure with $S_e = 19.18$~keV/nm, the vertical direction is along [201] direction. 
+\textbf{(b)} Simulated diffraction pattern for the pristine $\beta$ phase.
+\textbf{(c)} Simulated diffraction pattern for the $\gamma$ phase.}
+\label{fig:S2}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.75\linewidth]{figureS3_transverse_part1.png}
+\caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
+for electronic energy losses ranging from $S_e = 11.29$~keV/nm to 
+$S_e = 26.05$~keV/nm. The measured track diameters are indicated for each case.}
+\label{fig:S3}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figureS3_transverse_part2.png}
+    \caption{Transverse cross-sectional views of ion tracks in $\beta$-Ga$_2$O$_3$ 
+    for electronic energy losses ranging from $S_e = 30.08$~keV/nm to 
+    $S_e = 42.92$~keV/nm. The measured track diameters are indicated for each case.}
+    \label{fig:S4}
+\end{figure}
+
+\end{document}

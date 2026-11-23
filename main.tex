@@ -82,8 +82,22 @@ Accurate and Efficient Modeling of Polymorphism and Swift Heavy-Ion Irradiation}
 \author{Linyang Jiang}
 \affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
 \affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
-\author{And More ...}
+\author{Yuhui Hu}
 \affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\affiliation{School of Materials $\&$ Energy, Lanzhou University, Lanzhou, 730000, China}
+\author{Wenqiang Liu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Lijun Xu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Pengfei Zhai}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
+\author{Jie Liu}
+\affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
+\affiliation{School of Nuclear Science and Technology, University of Chinese Academy of Sciences, Beijing 100049, China}
 \author{Jinglai Duan}
 \thanks{Corresponding author. Email: j.duan@impcas.ac.cn}
 \affiliation{State Key Laboratory of Heavy Ion Science and Technology, Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou 730000, China}
@@ -133,7 +147,7 @@ rich polymorphism, including metastable $\alpha$ (corundum-type), $\gamma$
 (defective spinel), $\delta$ (bixbyite), and $\kappa$ (orthorhombic) phases \cite{yoshioka_structures_2007}. 
 This polymorphic diversity opens new avenues for directional material design and property 
 tuning but also presents formidable challenges in controlled synthesis, phase stability, 
-and interface engineering.
+and interface engineering \cite{abdullaev_thermal_2024,galeckas_optical_2024,liu_band_2024,yakimov_depth_2025}.
 Consequently, a comprehensive theoretical understanding of \ga---particularly of its 
 complex polymorphic nature---is essential for realizing its full potential in practical 
 applications.
@@ -146,7 +160,7 @@ interface states \cite{bermudez_structure_2006}, and phase stability \cite{fan_l
 While first-principles approaches continue to offer critical insights, their high computational 
 cost and limited scalability pose significant challenges for modeling large-scale phenomena, 
 such as irradiation-induced phase transitions or extended defect evolution 
-\cite{azarov_disorder-induced_2021,han_unraveling_2025}. 
+\cite{azarov_disorder-induced_2021,han_unraveling_2025,klevtsov_nonlinear_2024,titov_density_2025,azarov_phase_2025}. 
 Conversely, molecular dynamics (MD) enables simulations at larger time 
 and length scales; however, the empirical interatomic potentials 
 it relies on often struggle to accurately capture the complex potential energy landscape of 
@@ -193,8 +207,7 @@ irradiation experiments on $\beta$-\ga, we train a dedicated NEP model using a
 dataset augmented with additional $\gamma$-phase configurations and $\beta$-phase
 heating--cooling pathways.
 High-throughput MD simulations based on this model yield a series of irradiated
-$\beta$-\ga\ structures whose ion-track sizes systematically depend on the electronic
-energy loss.
+$\beta$-\ga\ structures across a wide range of electronic energy losses.
 The simulated results are in quantitative agreement with experimental observations and
 provide a consistent physical explanation for the reported experimental discrepancies.
 
@@ -376,7 +389,8 @@ for a narrower energy window from $-5.9$ to $-5.4$~eV/atom.
 \subsection{Overall performance comparison}
 
 A comprehensive comparison of the predictive capabilities of NEP and tabGAP is
-shown in Fig.~\ref{fig_comparison_dual_2x3}. Our NEP model, trained with the
+shown in Fig.~\ref{fig_comparison_dual_2x3} with results summarized in Table~\ref{tab_accuracy_comparison}. 
+Our NEP model, trained with the
 energy-dependent weighting strategy, exhibits consistently superior performance
 over tabGAP.
 Given the wide energy span of the original GAP dataset, we separately analyze
@@ -400,7 +414,7 @@ reaches 130.2~meV/atom, which is 3.5 times higher than that of NEP
 energy range.
 The MAE of force prediction by NEP is 303.9~\meVA, approximately three quarters
 of that of tabGAP (392.7~\meVA), while the MAE of virial prediction is
-69.3~meV for NEP and 172.3~meV for tabGAP.
+69.3~meV/atom for NEP and 172.3~meV/atom for tabGAP.
 The overall MAEs of both models remain relatively large mainly because the dataset
 covers an extremely broad energy range.
 For the relatively stable configurations, both models show significant improvements in
@@ -418,7 +432,7 @@ and virial predictions.
 \begin{table}[htbp]
 \caption{\label{tab_accuracy_comparison}
 Prediction accuracy comparison between tabGAP and NEP for configurations with 
-broader (up to 5~eV/atom above $\beta$ phase) and shallower (up to 0.5~eV/atom 
+broader (up to 5~eV/atom above $\beta$ phase) and narrower (up to 0.5~eV/atom 
 above $\beta$ phase) energy ranges. Energy values are in meV/atom, force values 
 are in meV/\AA, and virial values are in meV/atom.
 }
@@ -430,8 +444,8 @@ Model & MAE & RMSE & MAE & RMSE & MAE & RMSE \\
 \hline
 tabGAP (Broader) & 48.3 & 130.2 & 392.7 & 1023.0 & 172.3 & 621.6 \\
 NEP (Broader) & 16.4 & 37.2 & 303.8 & 845.2 & 69.3 & 191.5 \\
-tabGAP (Shallower) & 11.8 & 22.7 & 392.5 & 1029.1 & 168.9 & 654.7 \\
-NEP (Shallower) & 6.4 & 10.4 & 302.5 & 842.5 & 69.4 & 197.5 \\
+tabGAP (Narrower) & 11.8 & 22.7 & 392.5 & 1029.1 & 168.9 & 654.7 \\
+NEP (Narrower) & 6.4 & 10.4 & 302.5 & 842.5 & 69.4 & 197.5 \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -865,15 +879,22 @@ increase with increasing track size and saturates at about 1~nm.
 To validate our simulation results, we compared the predicted track diameters with
 experimental measurements reported in Refs.~\cite{xu_thermal_2025,ai_radiation_2019},
 as shown in Fig.~\ref{fig_track_diameter_comparison}.
-The figure includes simulation results for ten different values of $S_e$, with each
+The figure includes simulation results for nine different values of $S_e$, with each
 case repeated three times to reduce statistical fluctuations in the MD simulations. 
+All simulated transverse cross-sectional views, along with the corresponding measured 
+track diameters, are presented in Fig.~S3 and Fig.~S4. 
+The simulated track diameter increases rapidly once $S_e$ exceeds a threshold of 
+approximately 17~keV/nm, whereas the growth rate decreases markedly when $S_e$ exceeds 30~keV/nm.
+At even higher $S_e$, the monotonic dependence of the simulated track size on 
+$S_e$ becomes less evident, which we attribute to subtle differences 
+in the electronic cascade kinetics induced by ions of different energies and species.
 The excellent agreement between simulation and experiment across a wide range of $S_e$ 
 demonstrates the reliability of our NEP model.
 Besides, the total computational throughput for these results exceeds
-$1.4\times10^{13}$ atom-steps.
-Achieving the same throughput with tabGAP would require more than 83 days on eight
+$1.2\times10^{13}$ atom-steps.
+Achieving the same throughput with tabGAP would require more than 69 days on eight
 CPU nodes, each equipped with two 24-core Intel Xeon Gold 6240R processors, whereas
-the computational time for NEP is estimated to be less than four days on a GPU 
+the computational time for NEP is estimated to be less than three days on a GPU 
 cluster with four NVIDIA GeForce RTX~4090 GPUs.
 These results further highlight the suitability of NEP for high-throughput,
 large-scale MD simulations.
@@ -896,9 +917,13 @@ This capability opens a new avenue for device-scale design and optimization of
 \ga-based devices from an atomistic simulation perspective.
 
 \begin{acknowledgments}
-We wish to acknowledge the support of the author community in using
-REV\TeX{}, offering suggestions and encouragement, testing new versions,
-\dots.
+The authors acknowledge the National Natural Science Foundation of China (Grant 
+No.\,12325511), the Huizhou Science and Technology Talent Project (Grant 
+No.\,2024EQ050015), the Gansu Provincial Science and Technology Innovation 
+Talent Program (Grant No.\,24RCKB011), the Dongjiang Yuan Intelligent Computing 
+Center for providing computational resources. 
+The authors also thanks the valuable comments and suggestions 
+from Jiaming Zhang and Wentao Wang. 
 \end{acknowledgments}
 
 \appendix
@@ -1008,7 +1033,7 @@ results between the standard and doubled-thickness models.
 % most likely will not want to use it.
 % \nocite{*}
 
-\bibliography{apssamp}% Produces the bibliography via BibTeX.
+\bibliography{main}% Produces the bibliography via BibTeX.
 
 \end{document}
 %

@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+\textbf{\Large Cover Letter}
+\end{center}
+
+\vspace{1em}
+
+Dear Editors,
+
+We would like to submit the enclosed manuscript entitled ``A Neuroevolution Potential for Gallium Oxide: Accurate and Efficient Modeling of Polymorphism and Swift Heavy-Ion Irradiation'' which we wish to be considered for publication in \textit{Applied Physics Reviews}.
+
+Gallium oxide (Ga$_2$O$_3$), a representative fourth-generation semiconductor, has attracted considerable attention due to its ultra-wide bandgap, high breakdown electric field, and promising applications in power electronics and solar-blind UV photodetectors. However, its complex polymorphic nature---including metastable $\alpha$, $\gamma$, $\delta$, and $\kappa$ phases alongside the stable $\beta$ phase---poses significant challenges for fundamental studies, particularly in understanding phase-transformation behaviors under nonequilibrium conditions such as swift heavy-ion (SHI) irradiation. While first-principles methods provide critical insights, their computational cost limits large-scale simulations. Conversely, classical molecular dynamics with empirical potentials struggles to capture Ga$_2$O$_3$'s complex energy landscape. Machine learning interatomic potentials (MLIPs) offer a promising solution, yet the existing state-of-the-art tabGAP potential exhibits notable limitations in both accuracy and computational efficiency.
+
+In this work, we develop a robust and highly efficient MLIP for Ga$_2$O$_3$ based on the neuroevolution potential (NEP) framework combined with an innovative energy-dependent weighting strategy. Our NEP model demonstrates substantial improvements over tabGAP: the mean absolute error for energy prediction is reduced to one-third (16.4 vs. 48.3 meV/atom), while computational throughput increases by 4--6 times across different system sizes. We further introduce a physically process-oriented sampling strategy to systematically augment the training dataset, addressing the systematic softening issues and limited extrapolation capability commonly observed in MLIPs. The augmented NEP model accurately reproduces the equation-of-state curves for all major Ga$_2$O$_3$ polymorphs and reliably describes heating--cooling processes critical for irradiation simulations.
+
+As a representative application, we perform high-throughput SHI irradiation simulations of $\beta$-Ga$_2$O$_3$ across a wide range of electronic energy losses. Our simulations reveal a core--shell track structure with an amorphous core surrounded by a $\gamma$-phase shell, and provide the first consistent physical explanation for previously conflicting experimental observations regarding track crystallinity. The predicted track diameters show excellent quantitative agreement with transmission electron microscopy measurements, validating the reliability of our NEP model. The exceptional computational efficiency enabled simulations exceeding $1.2\times10^{13}$ atom-steps, a task that would be impractical with existing methods.
+
+Our findings not only establish NEP as a superior computational tool for Ga$_2$O$_3$ research but also demonstrate a generalizable methodology for developing accurate and efficient MLIPs for complex materials systems. The impressive computational efficiency of NEP enables large-scale atomistic simulations that are essential for understanding Ga$_2$O$_3$ behavior in radiation environments and advancing its practical applications.
+
+We believe that the methodological advances, the comprehensive benchmark against state-of-the-art potentials, the strong validation through experimental comparison, and the broad implications for both the Ga$_2$O$_3$ community and the wider materials science field will make this manuscript of significant interest to the readership of \textit{Applied Physics Reviews}.
+
+Thank you very much for your time and consideration.
+
+\vspace{1em}
+
+Sincerely,
+
+\textbf{Jinglai Duan}
+
+and co-authors
+
+\vspace{1em}
+
+\noindent
+State Key Laboratory of Heavy Ion Science and Technology \\
+Institute of Modern Physics, Chinese Academy of Sciences \\
+Lanzhou 730000, China \\
+Email: j.duan@impcas.ac.cn
+
+\end{document}
