@@ -1,0 +1,37 @@
+# macOS metadata and local tool state
+.DS_Store
+._*
+__pycache__/
+*.py[cod]
+.venv/
+.cloudpack/
+.*.cloudpack-*/
+
+# LaTeX and BibTeX intermediates
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex
+*.synctex.gz
+*.toc
+*.xdv
+*Notes.bib
+!/apssampNotes.bib
+
+# Figure assets, review packages, and submission files managed by Cloudpack
+/figures/
+/figures_raw/
+/第一轮意见回复/
+/第二轮意见回复/
+/*.pdf
+/*.docx
+/*.xls
+/*.xlsx
+/*.zip
+
+# The revision simulations have their own Git repository
+/Ga2O3_2026_revision/
